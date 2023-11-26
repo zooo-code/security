@@ -1,7 +1,6 @@
 package com.security.user.service;
 
 
-import com.security.user.controller.MemberDto;
 import com.security.user.entity.User;
 import com.security.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
