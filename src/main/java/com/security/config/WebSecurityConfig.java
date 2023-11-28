@@ -29,7 +29,8 @@ public class WebSecurityConfig  {
     @ConditionalOnProperty(name = "spring.h2.console.enabled",havingValue = "true")
     public WebSecurityCustomizer configure() {
         return web -> web.ignoring()
-                .requestMatchers(PathRequest.toH2Console());
+                .requestMatchers(PathRequest.toH2Console())
+                .requestMatchers("/static/**");
     }
 
     // 특정 HTTP 요청에 대한 웹 기반 보안 구성
@@ -37,7 +38,7 @@ public class WebSecurityConfig  {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests((auth) -> auth.
-                                requestMatchers("/login", "/signup", "/user")
+                                requestMatchers("/login", "/signup", "/user","/home")
                         .permitAll()
                         .anyRequest()
                         .authenticated())
