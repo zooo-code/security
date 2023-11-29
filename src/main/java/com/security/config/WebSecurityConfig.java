@@ -26,7 +26,7 @@ public class WebSecurityConfig  {
 
     // 스프링 시큐리티 기능 비활성화
     @Bean
-    @ConditionalOnProperty(name = "spring.h2.console.enabled",havingValue = "true")
+    @ConditionalOnProperty(name = "spring.h2.console.enabled", havingValue = "true")
     public WebSecurityCustomizer configure() {
         return web -> web.ignoring()
                 .requestMatchers(PathRequest.toH2Console())
@@ -37,17 +37,17 @@ public class WebSecurityConfig  {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
-                .authorizeHttpRequests((auth) -> auth.
-                                requestMatchers("/login", "/signup", "/user","/home")
+                .authorizeHttpRequests((auth) -> auth
+                        .requestMatchers("/login", "/signup", "/user","/")
                         .permitAll()
                         .anyRequest()
                         .authenticated())
-                .formLogin((login) -> login.
-                                loginPage("/login").
-                                defaultSuccessUrl("/home")) // 폼 기반 로그인 설정
-                .logout((logout) -> logout.
-                                logoutSuccessUrl("/login").
-                                invalidateHttpSession(true)) // 로그아웃 설정
+                .formLogin((login) -> login
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/"))// 폼 기반 로그인 설정
+                .logout((logout) -> logout
+                        .logoutSuccessUrl("/login")
+                        .invalidateHttpSession(true)) // 로그아웃 설정
                 .csrf(AbstractHttpConfigurer::disable) //csrf 비활성화
                 .build();
     }
