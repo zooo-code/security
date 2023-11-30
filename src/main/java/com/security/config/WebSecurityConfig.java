@@ -1,6 +1,7 @@
 package com.security.config;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
@@ -16,7 +17,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 
 import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
-
+@Slf4j
 @RequiredArgsConstructor
 @EnableWebSecurity
 @Configuration
@@ -42,9 +43,10 @@ public class WebSecurityConfig  {
                         .permitAll()
                         .anyRequest()
                         .authenticated())
-                .formLogin((login) -> login
+                .formLogin((test) ->test
                         .loginPage("/login")
-                        .defaultSuccessUrl("/"))// 폼 기반 로그인 설정
+                        .defaultSuccessUrl("/"))
+                // 폼 기반 로그인 설정
                 .logout((logout) -> logout
                         .logoutSuccessUrl("/login")
                         .invalidateHttpSession(true)) // 로그아웃 설정
@@ -58,6 +60,7 @@ public class WebSecurityConfig  {
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
 
         daoAuthenticationProvider.setUserDetailsService(userService);
+
         daoAuthenticationProvider.setPasswordEncoder(bCryptPasswordEncoder());
 
         return daoAuthenticationProvider;
