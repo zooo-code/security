@@ -23,15 +23,15 @@
         <h2>로그인</h2>
     </div>
 
-    <form action="login.html" th:action method="post">
+    <form action="/login" method="post" role="form" th:method="post" th:object="${LoginForm}">
 
         <div>
             <label for="loginId">로그인 ID</label>
-            <input type="text" id="loginId" class="form-control">
+            <input type="text" id="loginId" class="form-control" th:field="*{email}">
         </div>
         <div>
             <label for="password">비밀번호</label>
-            <input type="password" id="password"  class="form-control">
+            <input type="password" id="password"  class="form-control" th:field="*{password}">
 
         </div>
 
