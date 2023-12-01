@@ -3,7 +3,6 @@ package com.security.user.service;
 
 import com.security.user.entity.User;
 import com.security.user.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;

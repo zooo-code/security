@@ -34,12 +34,6 @@ public class UserViewController {
         model.addAttribute("LoginForm", new LoginForm());
         return "login";
     }
-    @PostMapping("/login")
-    public String login(LoginForm loginForm) {
-        log.info("test {}",112312323);
-        userDetailService.loadUserByUsername(loginForm.getEmail());
-        return "redirect:/";
-    }
 
     @GetMapping("/signup")
     public String signupForm(Model model) {
